@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Career Acer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: #6a0dad; /* Light purple background */
+            font-family: 'Arial', sans-serif;
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        #starter-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6a0dad;
+        }
+        #main-content {
+            display: none;
+        }
+        #loading {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+        #loading-image {
+            width: 100px;
+        }
+        #see-you-soon {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+        #see-you-soon img {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+        }
+        #content-box {
+            background-color: #f0f0f0; /* Light grey background */
+        }
+    </style>
+</head>
+<body>
+    <div id="starter-logo">
+        <img src="{{ url_for('static', filename='logo.gif') }}" alt="Career Acer Logo" class="w-1/3">
+    </div>
+    <div id="main-content" class="container mx-auto mt-10 fade-in">
+        <div class="flex justify-center items-center min-h-screen">
+            <div id="content-box" class="bg-gray-100 p-16 rounded-lg shadow-lg w-full max-w-3xl"> <!-- Light grey background -->
+                <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">
+                    <i class="fa fa-briefcase mr-2"></i>Welcome to Career Acer
+                </h1>
+                <form id="careerForm" class="space-y-6">
+                    <div class="form-group">
+                        <label for="topic" class="block text-gray-700"><i class="fa fa-book mr-2"></i>Enter the topic you would like our experts to help you with:</label>
+                        <input type="text" class="form-control mt-2 p-3 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" id="topic" name="topic" placeholder="e.g. Software Engineering" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class="block text-gray-700"><i class="fa fa-map-marker mr-2"></i>Enter the location you would like our experts to curate jobs:</label>
+                        <input type="text" class="form-control mt-2 p-3 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" id="location" name="location" placeholder="e.g. New York, NY" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"><i class="fa fa-paper-plane mr-2"></i>Submit</button>
+                </form>
+                <div id="loading" class="flex">
+                    <img id="loading-image" src="{{ url_for('static', filename='loading.gif') }}" alt="Loading...">
+                </div>
+                <div id="download-link" class="mt-4 text-center hidden">
+                    <a href="#" id="download" class="btn btn-success py-3 px-6 bg-green-500 text-white rounded-lg hover:bg-green-600"><i class="fa fa-download mr-2"></i>Download Zip File</a>
+                </div>
+                <div id="error-message" class="alert alert-danger mt-4 hidden" role="alert">
+                    An error occurred. Please try again.
+                </div>
+                <div class="text-center mt-8 text-gray-600">
+                    &copy; 2024 Anmol Malhotra
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="see-you-soon" class="flex">
+        <img src="{{ url_for('static', filename='see-you-soon.gif') }}" alt="See You Soon">
+    </div>
+    <nav class="bg-purple-800 p-4 fixed bottom-0 w-full">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-white text-lg font-bold">Career Acer</a>
+            <a href="https://lordicon.com/" class="text-white">Icons by Lordicon.com</a>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('starter-logo').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 4000); // Adjust the time as needed
+        });
+
+        document.getElementById('careerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            document.getElementById('loading').style.display = 'flex';
+            document.getElementById('error-message').classList.add('hidden');
+            document.getElementById('download-link').classList.add('hidden');
+
+            const formData = new FormData(event.target);
+            fetch('/process', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loading').style.display = 'none';
+                if (data.filename) {
+                    document.getElementById('download-link').classList.remove('hidden');
+                    document.getElementById('download').href = `/download/${data.filename}`;
+                } else {
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error-message').classList.remove('hidden');
+            });
+        });
+
+        document.getElementById('download').addEventListener('click', function() {
+            document.getElementById('see-you-soon').style.display = 'flex';
+            setTimeout(function() {
+                location.reload();
+            }, 3000); // Adjust the time as needed
+        });
+
+    </script>
+</body>
+</html>

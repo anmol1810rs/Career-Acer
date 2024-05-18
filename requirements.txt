@@ -1,0 +1,17 @@
+langchain
+langchain_openai
+langchain_community
+langchain-community
+ipython
+pillow
+ollama
+crewai
+crewai[tools]
+openai
+pypdf
+pymupdf
+rapidocr-onnxruntime
+faiss-cpu
+streamlit
+beautifulsoup4
+flask
