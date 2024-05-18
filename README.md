@@ -55,7 +55,7 @@ To get started, clone the repository and follow the instructions below
 git clone https://github.com/anmol1810rs/Career-Acer.git
 
 # Navigate into the project directory
-cd career-acer
+cd Career-Acer
 
 # Create a virtual environment and activate it (optional)
 python -m venv venv
