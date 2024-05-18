@@ -86,7 +86,9 @@ Open-Source models may not give the best results based on multiple experiments c
 **Enter details in the UI below**
 ![Welcome Page](images/welcomePage.png)
 
-**Note: Once submitted, it takes a few minutes for the Agents to curate the best possible data for you**
+**Note:**
+Once submitted, it takes a few minutes for the Agents to curate the best possible data for you
+
 **------------ PATIENCE IS KEY ------------**
 
 **Downlaod the report.zip folder containing your curated data by clicking the Downlaod icon**
