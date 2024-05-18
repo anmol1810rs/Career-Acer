@@ -40,7 +40,7 @@ At Career-Acer, agents have roles such as 'Senior Technical Engineer', 'Recruitm
 Tasks are specific assignments for agents, providing detailed instructions including descriptions, responsible agents, required tools, and more, enabling execution of complex actions.
 At Career-Acer, the tasks are 'searchYoutube', 'getTopicTags', 'searchBlogs', 'createMCQs' and 'searchJobs'
 
-- **3.App.py**
+**3.App.py**
 
 The following code combines user input through a locally-hosted webapp, the Agents and Tasks to connect each Agent to their respective Task, followed by kickoff() to begin the process of data curation and integration according to the job-seeker's preferred topic and location of choice.
 
@@ -77,3 +77,17 @@ python app.py
 ```
 - **Note: llama3 model would only work if you have Ollama already installed.**
 - **To download open-source Ollama models, please check out https://ollama.com/ for more details**
+
+**Note:**
+Open-Source models may not give the best results based on multiple experiments carried out**
+
+## Check Results
+
+**Enter details in the UI below**
+![Welcome Page](images/welcomePage.png)
+
+**Note: Once submitted, it takes a few minutes for the Agents to curate the best possible data for you**
+**------------ PATIENCE IS KEY ------------**
+
+**Downlaod the report.zip folder containing your curated data by clicking the Downlaod icon**
+![Welcome Page](images/downloadZip.png)
