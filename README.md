@@ -39,4 +39,21 @@ git clone https://github.com/your-username/career-acer.git
 # Navigate into the project directory
 cd career-acer
 
-# Follow the setup instructions in the README file
+# Create a virtual environment and activate it (optional)
+python -m venv venv
+source venv/bin/activate
+
+# Download the dependencies as mentioned in the requirements.txt file
+pip install -r requirements.txt
+
+# Replace the API Keys in the .env file with your API keys to run the OpenAI LLM Model and Serper Search
+LANGCHAIN_API_KEY = "YOUR_LANGCHAIN_API_KEY"
+OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"
+SERPER_API_KEY = "YOUR_SERPER_API_KEY"
+
+# Incase you plan to run open-source (Ollama - llama3), uncomment the folloeing code in agents.py
+self.llm = Ollama(model = 'llama3')
+
+# Finally, run the application on your localhost
+python app.py
+
