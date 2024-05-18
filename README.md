@@ -95,4 +95,4 @@ Once submitted, it takes a few minutes for the Agents to curate the best possibl
 ![Welcome Page](images/downloadZip.png)
 
 ## Results
-The sample results for the Kubernetes examples shown above can be found in the sample_results directory of the repository.
+The sample results for the Kubernetes examples shown above can be found in the *sample_results* directory of the repository.
